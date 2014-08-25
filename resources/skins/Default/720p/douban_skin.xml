@@ -1,0 +1,200 @@
+<window>
+    <allowoverlay>no</allowoverlay>
+    <defaultcontrol>500</defaultcontrol>
+    <controls>
+        <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>1280</width>
+            <height>720</height>
+            <texture>douban_bg.png</texture>
+        </control>
+        <control type="group">
+            <posx>280</posx>
+            <posy>230</posy>
+            <control type="panel" id="500">
+                <posx>60</posx>
+                <posy>0</posy>
+                <width>600</width>
+                <height>70</height>
+                <viewtype>list</viewtype>
+                <orientation>horizontal</orientation>
+                <onleft>-</onleft>
+                <onright>-</onright>
+                <ondown condition="Player.HasAudio">510</ondown>
+                <ondown condition="!Player.HasAudio">520</ondown>
+                <itemlayout width="200" height="70">
+                    <control type="label">
+                        <posx>100</posx>
+                        <posy>0</posy>
+                        <width>200</width>
+                        <height>70</height>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <font>font16</font>
+                        <textcolor>80FFFFFF</textcolor>
+                        <selectedcolor>FFFFFFFF</selectedcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout width="200" height="70">
+                    <control type="label">
+                        <posx>100</posx>
+                        <posy>0</posy>
+                        <width>200</width>
+                        <height>70</height>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <font>font30</font>
+                        <textcolor>FFFFFFFF</textcolor>
+                        <selectedcolor>FFFFFFFF</selectedcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                </focusedlayout>
+            </control>
+            <control type="image">
+                <posx>40</posx>
+                <posy>100</posy>
+                <width>200</width>
+                <height>200</height>
+                <texture>$INFO[Window.Property(picture)]</texture>
+                <visible>!StringCompare(Window.Property(picture), )</visible>
+            </control>
+            <control type="image">
+                <posx>40</posx>
+                <posy>100</posy>
+                <width>200</width>
+                <height>200</height>
+                <texture>douban_cover.png</texture>
+                <visible>StringCompare(Window.Property(artist), )</visible>
+            </control>
+            <control type="label">
+                <posx>305</posx>
+                <posy>120</posy>
+                <width>300</width>
+                <height>20</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>$INFO[Window.Property(artist)] &lt;$INFO[Window.Property(albumtitle)]&gt; $INFO[Window.Property(public_time)]</label>
+                <visible>!StringCompare(Window.Property(artist), )</visible>
+                <textcolor>FF5c5c5c</textcolor>
+                <font>font14</font>
+            </control>
+            <control type="label">
+                <posx>305</posx>
+                <posy>120</posy>
+                <width>300</width>
+                <height>20</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>未知艺术家</label>
+                <visible>StringCompare(Window.Property(artist), )</visible>
+                <textcolor>FF5c5c5c</textcolor>
+                <font>font14</font>
+            </control>
+            <control type="label">
+                <posx>305</posx>
+                <posy>160</posy>
+                <width>300</width>
+                <height>20</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>$INFO[Window.Property(title)]</label>
+                <visible>!StringCompare(Window.Property(title), )</visible>
+                <textcolor>FF101010</textcolor>
+                <font>font30</font>
+            </control>
+            <control type="label">
+                <posx>305</posx>
+                <posy>160</posy>
+                <width>300</width>
+                <height>20</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>未知歌唱家</label>
+                <visible>StringCompare(Window.Property(title), )</visible>
+                <textcolor>FF101010</textcolor>
+                <font>font30</font>
+            </control>
+            <control type="label">
+                <posx>600</posx>
+                <posy>160</posy>
+                <width>300</width>
+                <height>20</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>-$INFO[MusicPlayer.TimeRemaining]</label>
+                <visible>Player.HasAudio</visible>
+                <textcolor>FF00a000</textcolor>
+                <font>font16</font>
+            </control>
+            <control type="group" id="510">
+                <control type="togglebutton" id="511">
+                    <posx>650</posx>
+                    <posy>120</posy>
+                    <width>24</width>
+                    <height>24</height>
+                    <texturefocus>douban_pause.png</texturefocus>
+                    <texturenofocus>douban_pause_highlight.png</texturenofocus>
+                    <alttexturefocus>douban_play.png</alttexturefocus>
+                    <alttexturenofocus>douban_play_highlight.png</alttexturenofocus>
+                    <onup>500</onup>
+                    <ondown>520</ondown>
+                    <usealttexture>Player.Paused</usealttexture>
+                    <onclick>PlayerControl(Play)</onclick>
+                    <visible>Player.HasAudio</visible>
+                </control>
+                <control type="progress" id="512">
+                    <posx>305</posx>
+                    <posy>205</posy>
+                    <width>370</width>
+                    <height>5</height>
+                    <reveal>false</reveal>
+                    <texturebg>douban_progress_bg.png</texturebg>
+                    <midtexture>douban_progress_down.png</midtexture>
+                    <info>Player.Progress</info>
+                </control>
+            </control>
+            <control type="group" id="520">
+                <control type="togglebutton" id="521">
+                    <posx>270</posx>
+                    <posy>220</posy>
+                    <width>128</width>
+                    <height>96</height>
+                    <texturefocus>douban_fav_highlight.png</texturefocus>
+                    <texturenofocus>douban_fav.png</texturenofocus>
+                    <alttexturefocus>douban_fav_selected_highlight.png</alttexturefocus>
+                    <alttexturenofocus>douban_fav_selected.png</alttexturenofocus>
+                    <onup condition="Player.HasAudio">510</onup>
+                    <onup condition="!Player.HasAudio">500</onup>
+                    <onright>522</onright>
+                    <enable>False</enable>
+                </control>
+                <control type="button" id="522">
+                    <posx>420</posx>
+                    <posy>220</posy>
+                    <width>128</width>
+                    <height>96</height>
+                    <texturefocus>douban_ban_highlight.png</texturefocus>
+                    <texturenofocus>douban_ban.png</texturenofocus>
+                    <onup condition="Player.HasAudio">510</onup>
+                    <onup condition="!Player.HasAudio">500</onup>
+                    <onleft>521</onleft>
+                    <onright>523</onright>
+                    <enable>False</enable>
+                </control>
+                <control type="button" id="523">
+                    <posx>570</posx>
+                    <posy>220</posy>
+                    <width>128</width>
+                    <height>96</height>
+                    <texturefocus>douban_next_highlight.png</texturefocus>
+                    <texturenofocus>douban_next.png</texturenofocus>
+                    <onup condition="Player.HasAudio">510</onup>
+                    <onup condition="!Player.HasAudio">500</onup>
+                    <onleft>522</onleft>
+                </control>
+            </control>
+        </control>
+    </controls>
+</window>

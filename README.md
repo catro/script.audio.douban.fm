@@ -1,2 +1,0 @@
-script.audio.douban.fm
-======================
