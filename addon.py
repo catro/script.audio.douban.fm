@@ -30,7 +30,7 @@ class FMPlayer(xbmc.Player):
         if len(song.keys()) > 0:
             self._onNewSong(song)
             listitem = xbmcgui.ListItem(song.get('title', ''))
-            listitem.setInfo('music', {'title', song.get('title', '')})
+            listitem.setInfo('music', {'title': song.get('title', '')})
             xbmc.Player().play(song.get('url', ''))
         else:
             xbmcgui.notification('豆瓣FM', '获取歌曲超时')
